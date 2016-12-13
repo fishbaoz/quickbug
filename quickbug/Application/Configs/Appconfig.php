@@ -37,7 +37,7 @@ return array(
 	 *
 	 * 建议：开发时打开,发布后关闭并且要处理
 	 */
-	'display_exception'=>true,
+	'display_exception'=>false,
 
 	/**
 	 * 设置时区,以免出现时间不正确的情况

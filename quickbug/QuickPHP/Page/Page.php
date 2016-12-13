@@ -156,7 +156,7 @@ class QP_Page_Page
 	 */
 	private function _getCurPage()
 	{
-		if($this->_urlMethod == 'standard' || false !== strpos($this->_options['url'], '?')){
+		if($this->_urlMethod == 'standard' || false !== strpos($this->_request->currentUrl(), '?')){
 			$pagenum = $this->_request->getGet($this->_options['tagname']);
 		}else{
 			$pagenum = $this->_request->getParam($this->_options['tagname']);

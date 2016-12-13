@@ -155,6 +155,11 @@ class QP_Upload_Upload
 	*/
 	public function set($sets)
 	{
+		// 如果保存的目录没有以 '/' 结束则要加上它
+		if(isset($sets['savePath']) && substr($sets['savePath'], -1,1)!='/')
+		{
+			$sets['savePath'] .= '/'; 
+		}		
 		$this->_sets = array_merge($this->_sets,$sets);
 		return $this;
 	}

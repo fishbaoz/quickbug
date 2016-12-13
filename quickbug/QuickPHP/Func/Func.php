@@ -99,6 +99,23 @@ class QP_Func_Func
 	}
 
 	/**
+	 * 计算文本长度,支持中文
+	 *
+	 * @param string $text
+	 * @return int
+	 */
+	static public function charLength($text,$charset='utf-8')
+	{
+		if(function_exists("mb_strlen")){
+			return mb_strlen($text,$charset);
+		}elseif(function_exists('iconv_strlen')) {
+			return iconv_strlen($text,$charset);
+		}else{
+			return strlen($text);
+		}
+	}
+	
+	/**
 	* 字符串截取，支持中文和其他编码
 	*
 	* @param string $str 需要转换的字符串
@@ -111,8 +128,10 @@ class QP_Func_Func
 	static public function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true)
 	{
 		if(function_exists("mb_substr")){
+			$strlen = mb_strlen($str,$charset);
 			$slice = mb_substr($str, $start, $length, $charset);
 		}elseif(function_exists('iconv_substr')) {
+			$strlen = iconv_strlen($str,$charset);
 			$slice = iconv_substr($str,$start,$length,$charset);
 		}else{
 			$re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
@@ -120,9 +139,10 @@ class QP_Func_Func
 			$re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
 			$re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
 			preg_match_all($re[$charset], $str, $match);
+			$strlen = strlen($str);
 			$slice = join("",array_slice($match[0], $start, $length));
 		}
-		if($suffix) return $slice."…";
+		if($suffix && $strlen>$length) return $slice."…";
 		return $slice;
 	}
 

@@ -46,6 +46,9 @@ class QP_Http_Http
 		Header("Content-type: $mimeType");
 		Header("Accept-Ranges: bytes");
 		Header("Accept-Length: ".$length);
+		// 兼容IE下的文件名显示乱码的问题
+		$isIE = strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), 'msie') !== false;
+		$showname = $isIE ? urlencode($showname) : $showname;
 		Header("Content-Disposition: attachment; filename=\"{$showname}\"");
 		// 优先下载指定的内容再下载文件
 		if($content == '' )

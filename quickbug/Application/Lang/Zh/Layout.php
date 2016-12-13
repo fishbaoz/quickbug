@@ -3,7 +3,7 @@
  * Layout 视图中文语言
  */
 return array(
-	'sys_title'=>'QuickBug Ver 1.5 企业版',
+	'sys_title'=>'QuickBug Ver 1.5.2 企业版',
 	'logout'=>'退出',
 	'welcome_title'=>'欢迎您',
 	'welcome_delault'=>'欢迎使用 QuickBug 缺陷库管理系统!',

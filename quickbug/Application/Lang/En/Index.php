@@ -20,7 +20,7 @@ Using QuickBug is completely free of charge. And in order to make the software o
 
 [System Design]
 
-Design & Development：YUAN Wei
+Design & Development：Vge
 Product Consultant：TU Hai-tao
 Application improvement：LIU Jun-na
 International Language：GUO Yu
@@ -34,7 +34,7 @@ International Language：GUO Yu
 
 [Website]
 
-QuickBug: http://www.vquickbug.com
+QuickBug: http://www.vquickphp.com/quickbug
 QuickPHP: http://www.vquickphp.com
 ",/*
   【系统说明】

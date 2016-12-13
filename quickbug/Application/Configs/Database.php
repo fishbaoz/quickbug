@@ -21,10 +21,10 @@ return array(
 		// 数据库字符集
 		'charset'=>'utf8',
 		// 用户名
-		'username'=>'root',
+		'username'=>'pbdb_f',
 		// 密码
-		'password'=>'',
+		'password'=>'pbdb_f',
 		//数据库名
-		'dbname'=>'quickbug',
+		'dbname'=>'pbdb',
 	),
 );

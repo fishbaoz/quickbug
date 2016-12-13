@@ -22,7 +22,7 @@ return array(
 
   【系统设计】
 
-  设计开发：袁维
+  设计开发：V哥
   产品顾问：涂海涛
   应用改进：刘俊娜
   国际语言：郭宇
@@ -35,7 +35,7 @@ return array(
 
   【官方网址】
 
-   《QuickBug》:http://www.vquickbug.com
+   《QuickBug》:http://www.vquickphp.com/quickbug
    《QuickPHP》:http://www.vquickphp.com
   ',
 );

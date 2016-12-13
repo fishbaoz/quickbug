@@ -368,23 +368,31 @@ class bugController extends BaseController
 		// 初始化数据
 		$this->viewData();
 		// 提交操作
-		if($this->request->isPost()){
+		if($this->request->isPost())
+		{
 			// 添加BUG
 			$sets = array(
-			'projectid'=>$_POST['projectid'],
-			'verid'=>$_POST['verid'],
-			'moduleid'=>$_POST['moduleid'],
-			'subject'=>$_POST['subject'],
-			'info'=>$_POST['fckEditInfo'],
-			'groupid'=>$_POST['usergroup'],
-			'touserid'=>$_POST['userid'],
-			'severity'=>$_POST['severity'],
-			'frequency'=>$_POST['frequency'],
-			'priority'=>$_POST['priority'],
-			'bugtype'=>$_POST['bugtype'],
-			'savetype'=>$_POST['savetype']>0 ? 1 : 0,
+				'projectid'=>$_POST['projectid'],
+				'verid'=>$_POST['verid'],
+				'moduleid'=>$_POST['moduleid'],
+				'subject'=>$_POST['subject'],
+				'info'=>$_POST['editorInfo'],
+				'groupid'=>$_POST['usergroup'],
+				'touserid'=>$_POST['userid'],
+				'severity'=>$_POST['severity'],
+				'frequency'=>$_POST['frequency'],
+				'priority'=>$_POST['priority'],
+				'bugtype'=>$_POST['bugtype'],
+				'savetype'=>$_POST['savetype']>0 ? 1 : 0,
 			);
 			$bugid = $this->bugModel->addBug($sets,$this->userid);
+			
+			// 自动帮用户记录上一次添加BUG时的选项,方便在下一次添加BUG自动选择
+			$autoAddSet = $_POST;
+			unset($autoAddSet['editorInfo'],$autoAddSet['fronturl'],$autoAddSet['subject']);
+			$user = new Model_User();
+			$user->saveSet('bugAddAutoSet',$autoAddSet,$this->userid);
+			
 			// 上传BUG文档
 			$this->uploadDocs($bugid);
 			// 发送通知
@@ -407,6 +415,9 @@ class bugController extends BaseController
 
 		// 用户设置的默认模板
 		$this->view->defaultTplId = intval($this->userModel->getSet('defaultTplId'));
+		
+		// 上一次提交BUG时的设置当本次提交的默认设置
+		$this->view->bugAddAutoSet = $this->userModel->getSet('bugAddAutoSet');
 	}
 
 	/**
@@ -481,7 +492,7 @@ class bugController extends BaseController
 			'verid'=>$_POST['verid'],
 			'moduleid'=>$_POST['moduleid'],
 			'subject'=>$_POST['subject'],
-			'info'=>$_POST['fckEditInfo'],
+			'info'=>$_POST['editorInfo'],
 			'touserid'=>$_POST['userid'],
 			'severity'=>$_POST['severity'],
 			'frequency'=>$_POST['frequency'],

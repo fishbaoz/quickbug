@@ -19,8 +19,9 @@
 	font-size: 12px;
 	margin-top:20px;
 	background-color:#eeeeee;
+	text-align:left;
 }
-th{
+.qp_table th{
 	color:#000000;
 	background-color:#FFCC00;
 	padding:10px 10px 10px 10px;
@@ -48,41 +49,41 @@ function qp_debug_swap_show(id)
     <th colspan="2"><a href="http://www.vquickphp.com" target="_blank">QuickPHP(II) Ver <?php echo QP_Sys::VERSION?></a> 调试信息台</th>
   </tr>
   <tr>
-    <td width="100" class="tgreen">运行时间:</td><td class="tred"><?php echo round($debugInfo['endTime']-$debugInfo['beginTime'], 6); ?> 秒</td>
+    <td width="100" class="tgreen">运行时间:</td><td class="tred" style="text-align:left;"><?php echo round($debugInfo['endTime']-$debugInfo['beginTime'], 6); ?> 秒</td>
   </tr>
 
 <?php
 $frontURL = QP_Request::getInstance()->frontUrl();
 if($frontURL):?>
   <tr>
-    <td class="tgreen">来源URL:</td><td class="tblue"><?php echo $frontURL ?></td>
+    <td class="tgreen">来源URL:</td><td class="tblue" style="text-align:left;"><?php echo $frontURL ?></td>
   </tr>
 <?php endif;?>
 
   <tr>
-    <td class="tgreen">当前URL:</td><td class="tblue"><?php echo QP_Request::getInstance()->currentUrl() ?></td>
+    <td class="tgreen">当前URL:</td><td class="tblue" style="text-align:left;"><?php echo QP_Request::getInstance()->currentUrl() ?></td>
   </tr>
   <tr>
-    <td class="tgreen">控制器:</td><td class="tblue"><?php echo $debugInfo['controller']?></td>
+    <td class="tgreen">控制器:</td><td class="tblue" style="text-align:left;"><?php echo $debugInfo['controller']?></td>
   </tr>
   <tr>
-    <td class="tgreen">动作方法:</td><td class="tblue"><?php echo $debugInfo['action']?></td>
+    <td class="tgreen">动作方法:</td><td class="tblue" style="text-align:left;"><?php echo $debugInfo['action']?></td>
   </tr>
   <tr>
-    <td class="tgreen">应用布局:</td><td class="tblue"><?php echo isset($debugInfo['layout']) ? $debugInfo['layout'] : '&nbsp;'?></td>
+    <td class="tgreen">应用布局:</td><td class="tblue" style="text-align:left;"><?php echo isset($debugInfo['layout']) ? $debugInfo['layout'] : '&nbsp;'?></td>
   </tr>
   <tr>
-    <td class="tgreen">输出视图:</td><td class="tblue"><?php echo isset($debugInfo['view']) ? $debugInfo['view'] : '&nbsp;'?></td>
+    <td class="tgreen">输出视图:</td><td class="tblue" style="text-align:left;"><?php echo isset($debugInfo['view']) ? $debugInfo['view'] : '&nbsp;'?></td>
   </tr>
   <tr>
-    <td class="tgreen">匹配路由:</td><td class="tblue"><?php echo isset($debugInfo['router']) ? '<pre>'.htmlspecialchars(print_r($debugInfo['router'],true)).'</pre>' : '&nbsp;'?></td>
+    <td class="tgreen">匹配路由:</td><td class="tblue" style="text-align:left;"><?php echo isset($debugInfo['router']) ? '<pre>'.htmlspecialchars(print_r($debugInfo['router'],true)).'</pre>' : '&nbsp;'?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_sql')">
-    <td colspan="2">[SQL]</td>
+    <td colspan="2" style="text-align:left;">[SQL]</td>
   </tr>
   <tr style="display:none" id="qp_tr_sql">
-    <td colspan="2">
+    <td colspan="2" style="text-align:left;">
     <?php
     $dbDebugInfo = (array)QP_Registry_Registry::getInstance()->get('DB_DEBUG');
     foreach($dbDebugInfo as $row):?>
@@ -92,59 +93,59 @@ if($frontURL):?>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_param')">
-    <td colspan="2">[URI PARAM]</td>
+    <td colspan="2" style="text-align:left;">[URI PARAM]</td>
   </tr>
   <tr style="display:none" id="qp_tr_param">
-    <td colspan="2"><?php $params = QP_Request::getInstance()->getParam();if($params) qp_sys::dump($params)?></td>
+    <td colspan="2" style="text-align:left;"><?php $params = QP_Request::getInstance()->getParam();if($params) qp_sys::dump($params)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_get')">
-    <td colspan="2">[GET]</td>
+    <td colspan="2" style="text-align:left;">[GET]</td>
   </tr>
   <tr style="display:none" id="qp_tr_get">
-    <td colspan="2"><?php if(isset($_GET) && $_GET) qp_sys::dump($_GET)?></td>
+    <td colspan="2" style="text-align:left;"><?php if(isset($_GET) && $_GET) qp_sys::dump($_GET)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_post')">
-    <td colspan="2">[POST]</td>
+    <td colspan="2" style="text-align:left;">[POST]</td>
   </tr>
   <tr style="display:none" id="qp_tr_post">
-    <td colspan="2"><?php if(isset($_POST) && $_POST) qp_sys::dump($_POST)?></td>
+    <td colspan="2" style="text-align:left;"><?php if(isset($_POST) && $_POST) qp_sys::dump($_POST)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_cookie')">
-    <td colspan="2">[COOKIE]</td>
+    <td colspan="2" style="text-align:left;">[COOKIE]</td>
   </tr>
   <tr style="display:none" id="qp_tr_cookie">
-    <td colspan="2"><?php if(isset($_COOKIE) && $_COOKIE) qp_sys::dump($_COOKIE)?></td>
+    <td colspan="2" style="text-align:left;"><?php if(isset($_COOKIE) && $_COOKIE) qp_sys::dump($_COOKIE)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_session')">
-    <td colspan="2">[SESSION]</td>
+    <td colspan="2" style="text-align:left;">[SESSION]</td>
   </tr>
   <tr style="display:none" id="qp_tr_session">
-    <td colspan="2"><?php if(isset($_SESSION) && $_SESSION) qp_sys::dump($_SESSION)?></td>
+    <td colspan="2" style="text-align:left;"><?php if(isset($_SESSION) && $_SESSION) qp_sys::dump($_SESSION)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_files')">
-    <td colspan="2">[FILES]</td>
+    <td colspan="2" style="text-align:left;">[FILES]</td>
   </tr>
   <tr style="display:none" id="qp_tr_files">
-    <td colspan="2"><?php if(isset($_FILES) && $_FILES) qp_sys::dump($_FILES)?></td>
+    <td colspan="2" style="text-align:left;"><?php if(isset($_FILES) && $_FILES) qp_sys::dump($_FILES)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_server')">
-    <td colspan="2">[SERVER]</td>
+    <td colspan="2" style="text-align:left;">[SERVER]</td>
   </tr>
   <tr style="display:none" id="qp_tr_server">
-    <td colspan="2"><?php qp_sys::dump($_SERVER)?></td>
+    <td colspan="2" style="text-align:left;"><?php qp_sys::dump($_SERVER)?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_viewvar')">
-    <td colspan="2">[视图变量]</td>
+    <td colspan="2" style="text-align:left;">[视图变量]</td>
   </tr>
   <tr style="display:none" id="qp_tr_viewvar">
-    <td colspan="2">
+    <td colspan="2" style="text-align:left;">
     <?php
     // 处理数据为友好显示
     function debug_dataShow($val){
@@ -165,24 +166,24 @@ if($frontURL):?>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_includepath')">
-    <td colspan="2">[搜索路径]</td>
+    <td colspan="2" style="text-align:left;">[搜索路径]</td>
   </tr>
   <tr style="display:none" id="qp_tr_includepath">
-    <td colspan="2"><?php qp_sys::dump(explode(PATH_SEPARATOR,get_include_path()))?></td>
+    <td colspan="2" style="text-align:left;"><?php qp_sys::dump(explode(PATH_SEPARATOR,get_include_path()))?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_includefile')">
-    <td colspan="2">[引入文件]</td>
+    <td colspan="2" style="text-align:left;">[引入文件]</td>
   </tr>
   <tr style="display:none" id="qp_tr_includefile">
-    <td colspan="2"><?php qp_sys::dump(get_included_files())?></td>
+    <td colspan="2" style="text-align:left;"><?php qp_sys::dump(get_included_files())?></td>
   </tr>
 
   <tr class="tr_click" onclick="qp_debug_swap_show('qp_tr_extensions')">
-    <td colspan="2">[安装的扩展]</td>
+    <td colspan="2" style="text-align:left;">[安装的扩展]</td>
   </tr>
   <tr style="display:none" id="qp_tr_extensions">
-    <td colspan="2"><?php qp_sys::dump(get_loaded_extensions())?></td>
+    <td colspan="2" style="text-align:left;"><?php qp_sys::dump(get_loaded_extensions())?></td>
   </tr>
 
 

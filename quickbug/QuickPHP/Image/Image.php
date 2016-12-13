@@ -88,14 +88,11 @@ class QP_Image_Image
 		// 缩略图大小
 		$tow = $thumbWidth;
 		$toh = $thumbHeight;
-
+		// 是否处理原图
 		$make_max = 0;
 		$maxtow = $thumbWidth;
 		$maxtoh = $thumbHeight;
-		if($maxtow >= 300 && $maxtoh >= 300) {
-			$make_max = 1;
-		}
-
+		
 		// 获取图片信息
 		$im = '';
 		if($data = getimagesize($srcfile)) {
@@ -109,9 +106,9 @@ class QP_Image_Image
 					$im = imagecreatefromjpeg($srcfile);
 				}
 			} elseif($data[2] == 3) {
-			if(function_exists("imagecreatefrompng")) {
-				$im = imagecreatefrompng($srcfile);
-			}
+				if(function_exists("imagecreatefrompng")) {
+					$im = imagecreatefrompng($srcfile);
+				}
 			}
 		}
 		if(!$im) return '';
@@ -153,6 +150,7 @@ class QP_Image_Image
 			} else {
 				return '';
 			}
+			// -
 			if(function_exists('imagejpeg')) {
 				imagejpeg($ni, $dstfile);
 				// 大图片

@@ -98,6 +98,7 @@ class QP_Request
 		}else{
 			$this->_params = array_merge($this->_params, $this->_magicQuotes($name));
 		}
+		return $this;
 	}
 
 	/**
@@ -158,6 +159,7 @@ class QP_Request
 		}else{
 			$_POST = array_merge($_POST, $this->magicQuotes($name));
 		}
+		return $this;
 	}
 
 	/**
@@ -186,6 +188,7 @@ class QP_Request
 		}else{
 			$_GET = array_merge($_GET, $this->_magicQuotes($name));
 		}
+		return $this;
 	}
 
 	/**

@@ -4,6 +4,9 @@
 <script type="text/javascript">
 // 用户设置的默认模板
 var G_default_tplid = <?php echo $this->defaultTplId?>;
+
+// 上一次提交BUG时的设置当本次提交的默认设置
+var G_auto_set = <?php echo json_encode($this->bugAddAutoSet)?>;
 </script>
 <?php echo includeFile('/Common/Bug-menu.html')?>
 <style type="text/css">
@@ -52,7 +55,7 @@ margin-left:100px;
   </tr>
   <tr>
     <td><?php echo L('bug_info')?>:</td>
-    <td><?php echo getFckeditor($this->tplhtml,'fckEditInfo','600px','400px')?></td>
+    <td width="100%" style="white-space:normal;"><?php echo getUeditor($this->tplhtml,'editorInfo','800px','400px')?></td>
   </tr>
   <tr>
     <td><?php echo L('to_user')?>:</td>

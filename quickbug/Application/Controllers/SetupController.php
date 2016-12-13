@@ -163,7 +163,7 @@ class setupController extends QP_Controller
 		// 导入表结构和初始化
 		mysql_select_db($_POST['mysqldb'], $link);
 		mysql_query('set names utf8',$link);
-		$fileData = file_get_contents(APPLICATION_PATH.'/Data/database.sql');
+		$fileData = file_get_contents(APPLICATION_PATH.'/Data/quickbug.sql');
 		$sqlArr = explode(';', $fileData);
 		foreach ($sqlArr as $sql){
 			$sql = trim($sql);

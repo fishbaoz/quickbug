@@ -11,7 +11,7 @@ $(function(){
 			alert(L('profile.tpl_name_not_empty'));
 			return false;
 		}
-		if(Fckedit.get() == ''){
+		if(HtmlEditor.get() == ''){
 			alert(L('profile.tpl_content_not_empty'));
 			return false;
 		}
@@ -28,7 +28,7 @@ $(function(){
 			}
 			// 提交
 			var tname = $('#tplname').val();
-			var bultpl = Fckedit.get();
+			var bultpl = HtmlEditor.get();
 			$.post(site_url('profile','addbugtpl'),{tplname:tname,tplhtml:bultpl},function(json){
 				if(json.result != 0){
 					alert(json.message);
@@ -69,7 +69,7 @@ $(function(){
 				}
 				// 提交
 				var tname = $('#tplname').val();
-				var bultpl = Fckedit.get();
+				var bultpl = HtmlEditor.get();
 				$.post(site_url('profile','editbugtpl'),{editid:id,tplname:tname,tplhtml:bultpl},function(json){
 					if(json.result != 0){
 						alert(json.message);

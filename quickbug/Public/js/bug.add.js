@@ -61,5 +61,32 @@ $(function(){
 	// 初始化 默认的模板
 	if(G_default_tplid > 0){
 		$('#bugTpl').val(G_default_tplid);
-	}	
+	}
+	
+	// 初始化自动设置
+	if(G_auto_set){
+		// 初始化项目选择
+		$('#projectid').val(G_auto_set.projectid).change();
+		setTimeout(function(){
+			$('#verid').val(G_auto_set.verid);
+			$('#moduleid').val(G_auto_set.moduleid);
+		},800);
+		// 初始化用户选择
+		$('#usergroup').val(G_auto_set.usergroup).change();
+		setTimeout(function(){
+			$('#userid').val(G_auto_set.userid);
+		},800);
+		// 初始化BUG属性
+		$('#severity').val(G_auto_set.severity);
+		$('#frequency').val(G_auto_set.frequency);
+		$('#bugtype').val(G_auto_set.bugtype);
+		$('#priority').val(G_auto_set.priority);
+		
+		// 初始化邀请
+		if(G_auto_set.ivtuser && G_auto_set.ivtuser!=''){
+			$('#inviteBox').attr('checked',true);
+			$('#inviteSpan').show();
+			$('#ivtuser').val(G_auto_set.ivtuser);
+		}
+	}
 });

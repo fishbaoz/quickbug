@@ -37,21 +37,22 @@ function h($str){
 }
 
 /**
- * 创建 FCKeditor 编辑器
+ * 创建 Ueditor 编辑器
  * @param $initInfo :初始化的值
- * @param $fckName :Fckeditor提交后的表单域名称
- * @param $width :Fckeditor编辑器的宽度
- * @param $height :Fckeditor编辑器的高度
+ * @param $fckName :Ueditor提交后的表单域名称
+ * @param $width :Ueditor编辑器的宽度
+ * @param $height :Ueditor编辑器的高度
  */
-function getFckeditor($initInfo='',$fckName='fckEditInfo',$width='100%',$height='600')
+function getUeditor($initInfo='',$fckName='editorInfo',$width='100%',$height='600px')
 {
-	include_once(SITEWEB_PATH . "/fckeditor/fckeditor.php");
-	$oFCKeditor = new FCKeditor($fckName) ;
-	$oFCKeditor->BasePath = "fckeditor/";
-	$oFCKeditor->Width = $width;
-	$oFCKeditor->Height = $height;
-	$oFCKeditor->Value = $initInfo;//默认的内容
-	return $oFCKeditor->Create();
+	$html = <<<EOF
+<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script name="{$fckName}" id="{$fckName}" type="text/plain" style="width:{$width};height:{$height};">{$initInfo}</script>
+<script type="text/javascript">UE.getEditor('{$fckName}')</script> 	
+EOF;
+	return $html;
 }
 
 /**

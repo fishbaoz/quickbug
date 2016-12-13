@@ -286,16 +286,15 @@ function resizeImage(imgObj,MaxW,MaxH){
 }
 
 /**
- * Fckeditor 编辑器的常用操作
+ * HTML编辑器的常用操作
  *
  */
-var Fckedit = {
+var HtmlEditor = {
 	// 设置编辑器的内容
 	set:function(html){
-		// 测试过程中发现 FCKeditorAPI 在 onload() 后不一定马上有的
 		function _set(){
-			if(typeof(FCKeditorAPI) != 'undefined'){
-				FCKeditorAPI.GetInstance('fckEditInfo').SetHTML(html);
+			if(typeof(UE) != 'undefined'){
+				UE.getEditor('editorInfo').setContent(html);
 			}else{
 				setTimeout(_set, 200);
 			}
@@ -306,13 +305,12 @@ var Fckedit = {
 	// 得到当前编辑器中的内容
 	get:function(){
 		try{
-			return FCKeditorAPI.GetInstance('fckEditInfo').GetXHTML(true);
+			return UE.getEditor('editorInfo').getContent();
 		}catch(e){
 			return '';
 		}
 	}
 }
-
 
 /**
  * RTX 操作

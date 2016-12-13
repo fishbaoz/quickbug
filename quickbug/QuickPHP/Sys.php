@@ -12,7 +12,7 @@ class QP_Sys
 	 * QuickPHP 版本号
 	 *
 	 */
-	const VERSION = '2.5.5';
+	const VERSION = '2.5.6';
 
 
 	/**
@@ -241,8 +241,9 @@ class QP_Sys
 	 */
 	static public function dumpExit()
 	{
-		foreach (func_get_args() as $var){
-			dump($var);
+		foreach (func_get_args() as $var)
+		{
+			self::dump($var);
 		}
 		exit;
 	}
@@ -398,7 +399,7 @@ class QP_Sys
 			$msg = '<b>Error:</b>'.$errstr.'<br/>'.PHP_EOL;
 			$msg .= '<b>File:['.$errline.']</b>'.$errfile.'<br/>'.PHP_EOL;
 			if($errcontext){
-				$msg .= '<b>Parsms:</b>'.print_r($errcontext,true).'<br/>'.PHP_EOL;
+				// $msg .= '<b>Parsms:</b>'.print_r($errcontext,true).'<br/>'.PHP_EOL;
 			}
 			$msg .= '<br/>';
 			echo($msg);
@@ -416,7 +417,7 @@ class QP_Sys
 	static public function _checkSapi()
 	{
 		// 不是则直接闪人
-		if (PHP_SAPI != 'cli')
+		if (! (PHP_SAPI=='cli' || !isset($_SERVER["REQUEST_METHOD"])))
 		{
 			return;
 		}

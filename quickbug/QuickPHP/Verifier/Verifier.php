@@ -33,8 +33,8 @@ class QP_Verifier_Verifier
 		'numeric'     => '/^[0-9]+$/',
 		'zip'         => '/^[1-9]\d{5}$/',
 		'phone'       => '/^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$/',
-		'mobile'      => '/^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$/',
-		'mobilephone' => '/(^[0-9]{3,4}\-[0-9]{3,8}$)|(^[0-9]{3,12}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/',
+		'mobile'      => '/^((\(\d{2,3}\))|(\d{3}\-))?1[3|4|5|8]\d{9}$/',
+		'mobilephone' => '/(^[0-9]{3,4}\-[0-9]{3,8}$)|(^[0-9]{3,12}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}1[3|4|5|8][0-9]{9}$)/',
 		'qq'          => '/^[1-9]*[1-9][0-9]*$/',
 		'china'       => '/^[\x7f-\xff]+$/',
 		'onchina'     => '/[\x7f-\xff]/',
@@ -55,7 +55,6 @@ class QP_Verifier_Verifier
 	 */
 	static public function valid($key,$string)
 	{
-		$key = strtolower($key);
 		// 是定义的正则表达式
 		if(array_key_exists($key,self::$_regExp)){
 			return preg_match(self::$_regExp[$key],$string);

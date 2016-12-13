@@ -10,7 +10,7 @@ function init_bind(initBugTpl){
 		}
 		// 改变模块内容
 		$.get(site_url('bug','bugtpl','id='+id),function(json){
-			Fckedit.set(json.data.tplhtml);
+			HtmlEditor.set(json.data.tplhtml);
 		},'json');
 	});
 	// 初始化模板
@@ -115,7 +115,7 @@ function check_submit(){
 		alert(L('bug.subject_not_empty'));
 		return false;
 	}
-	if(Fckedit.get() == ''){
+	if(HtmlEditor.get() == ''){
 		alert(L('bug.bug_info_not_empty'));
 		return false;
 	}
