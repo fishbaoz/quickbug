@@ -13,7 +13,7 @@ return array(
 	 */
 	'default'=>array(
 		// 主机名或IP
-		'host'=>'localhost',
+		'host'=>'my6568652.xincache1.cn',
 		// 端口,默认为 3306
 		'port'=>3306,
 		// 是否常连接
@@ -21,10 +21,10 @@ return array(
 		// 数据库字符集
 		'charset'=>'utf8',
 		// 用户名
-		'username'=>'pbdb_f',
+		'username'=>'my6568652',
 		// 密码
-		'password'=>'pbdb_f',
+		'password'=>'bao711027',
 		//数据库名
-		'dbname'=>'pbdb',
+		'dbname'=>'my6568652',
 	),
 );
