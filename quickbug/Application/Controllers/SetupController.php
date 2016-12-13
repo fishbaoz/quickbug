@@ -59,7 +59,7 @@ class setupController extends QP_Controller
 			$next = false;
 		}
 		// mysql 扩展
-		$mysqlOK = function_exists('mysql_connect');
+		$mysqlOK = function_exists('mysqli_connect');
 		$data['mysql']=array(
 			'result'=>$mysqlOK ? 'PHP_MYSQL' : '',
 			'proposal'=>$mysqlOK,
@@ -147,28 +147,28 @@ class setupController extends QP_Controller
 	// 安装库
 	private function _installDb(){
 		// 测试 mysql 连接
-		$link = @mysql_connect($_POST['mysqlhost'].':'.$_POST['mysqlport'], $_POST['mysqluser'], $_POST['mysqlpass']);
+		$link = @mysqli_connect($_POST['mysqlhost'].':'.$_POST['mysqlport'], $_POST['mysqluser'], $_POST['mysqlpass']);
 		if(!$link){
 			$this->_out(-1,L('db_connect_fail'));
 		}
 		// 测试数据库名
-		$bool = @mysql_select_db($_POST['mysqldb'], $link);
+		$bool = @mysqli_select_db($link, $_POST['mysqldb']);
 		if(! $bool){
 			// 尝试着创建库
 			$sql = "CREATE DATABASE `{$_POST['mysqldb']}` DEFAULT CHARACTER SET utf8";
-			if(! @mysql_query($sql,$link)){
+			if(! @mysqli_query($link,$sql)){
 				$this->_out(-2, L('db_create_fail', array($_POST['mysqldb'])));
 			}
 		}
 		// 导入表结构和初始化
-		mysql_select_db($_POST['mysqldb'], $link);
-		mysql_query('set names utf8',$link);
+		mysqli_select_db($link, $_POST['mysqldb']);
+		mysqli_query($link, 'set names utf8');
 		$fileData = file_get_contents(APPLICATION_PATH.'/Data/quickbug.sql');
 		$sqlArr = explode(';', $fileData);
 		foreach ($sqlArr as $sql){
 			$sql = trim($sql);
 			if($sql){
-				mysql_query($sql,$link);
+				mysqli_query($link,$sql);
 			}
 		}
 	}
@@ -290,7 +290,7 @@ class setupController extends QP_Controller
 
 	// 自动安装测试数据
 	private function _initTestData(){
-		$db = QP_Db::factory();
+		$db = QP_Db::factory('mysqli');
 		$time = time();
 		// 安装两个用户，一个测试用户，一个开发用户
 		$sql = "

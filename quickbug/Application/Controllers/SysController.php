@@ -81,7 +81,7 @@ class SysController extends BaseController
 	public function savedbAction(){
 		set_time_limit(0);
 		// 得到所有表
-		$db = QP_Db::factory();
+		$db = QP_Db::factory('mysqli');
 		$tabList = $db->fetchCol('show tables');
 		// 保存为文件
 		$bakfile = SITEWEB_PATH.'/files/dbfiles/'.date('YmdHis').'.sql';

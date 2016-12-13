@@ -18,7 +18,7 @@ abstract class Model_Base{
 	 *
 	 */
 	public function __construct(){
-		$this->db = QP_Db::factory();
+		$this->db = QP_Db::factory('mysqli');
 		$this->userid = QP_Session_Session::get('login_userid');
 		$this->userpriv = QP_Session_Session::get('login_priv');
 	}

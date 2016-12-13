@@ -29,7 +29,7 @@ create table if not exists `quickbug_user` (
   `priv` tinyint(4) default 1 comment '用户权限: 1:普通用户 2:项目管理员 3:超级管理员',
   `enable` tinyint(4) default 1 comment '帐号是否启用: 1:启用 0:禁用',
   `dateline` int(11) default 0 comment '时间',
-  `ext` text default '' comment '扩展字段信息',
+  `ext` text comment '扩展字段信息',
   primary key (`userid`)
 ) engine=myisam default charset=utf8 comment='用户表';
 
@@ -118,7 +118,7 @@ create table if not exists `quickbug_bugs` (
   `verid` int(11) not null default 0 comment '版本id',
   `moduleid` int(11) not null default 0 comment '模块id',
   `subject` varchar(250) default '' comment '标题',
-  `info` text default '' comment '详细描述(这里用户可以自定义bug模板)',
+  `info` text comment '详细描述(这里用户可以自定义bug模板)',
   `groupid` int(11) not null default 0 comment '用户组id',
   `createuid` int(11) not null default 0 comment '创建者用户id',
   `touserid` int(11) not null default 0 comment '处理者用户id',
@@ -158,7 +158,7 @@ create table if not exists `quickbug_bug_docs` (
 create table if not exists `quickbug_bug_history` (
   `id` int(11) not null auto_increment comment '主键id',
   `bugid` int(11) not null default 0 comment 'BUG id',
-  `historydata` text default '' comment '上一次修改前的BUG序列化后的信息',
+  `historydata` text comment '上一次修改前的BUG序列化后的信息',
   `dateline` int(11) default 0 comment '记录时间',
   primary key (`id`),
   key `bugid` (`bugid`)
@@ -169,7 +169,7 @@ create table if not exists `quickbug_operate_history` (
   `id` int(11) not null auto_increment comment '主键id',
   `bugid` int(11) not null default 0 comment 'BUG id',
   `userid` int(11) not null default 0 comment '用户 id',
-  `text` text default '' comment '操作简介内容',
+  `text` text comment '操作简介内容',
   `dateline` int(11) default 0 comment '记录时间',
   primary key (`id`),
   key `bugid` (`bugid`)
@@ -180,7 +180,7 @@ create table if not exists `quickbug_bug_tpls` (
   `id` int(11) not null auto_increment comment '主键id',
   `userid` int(11) not null default 0 comment '用户id',
   `tplname` varchar(100) default '' comment '模块名称',
-  `tplhtml` text default '' comment '模块内容',
+  `tplhtml` text comment '模块内容',
   primary key (`id`),
   key `userid` (`userid`)
 ) engine=myisam default charset=utf8 comment='自定义BUG模块';
@@ -192,7 +192,7 @@ create table if not exists `quickbug_bug_comment` (
   `bugid` int(11) default 0 comment 'BUG id',
   `userid` int(11) default 0 comment '用户id',
   `username` varchar(100) default '' comment '用户名',
-  `info` text default '' comment '内容',
+  `info` text comment '内容',
   `dateline` int(11) default 0 comment '记录时间',
   primary key (`commentid`),
   key `bugid` (`bugid`)
