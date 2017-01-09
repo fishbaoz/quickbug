@@ -3,6 +3,11 @@
  * 用户模型
  *
  */
+
+define('ROOT_PATH', dirname(__FILE__).'/../../');
+require ROOT_PATH.'uc_config.inc.php';
+require ROOT_PATH.'uc_client/client.php';
+
 class Model_User extends Model_base{
 	
 	// 用户表名
@@ -36,7 +41,12 @@ class Model_User extends Model_base{
 	public function login($username,$passwd,$pwdType=0){
 		$passwd = $pwdType==0 ? md5($passwd) : $passwd;
 		// 得到用户数据
-		$row = $this->db->getRow($this->userTable)->where(array('username'=>$username,'passwd'=>$passwd))->result();
+		list($uid) = uc_user_login($username, $passwd);
+		if($uid <= 0) {
+			return -1;
+		}
+		$row = $this->db->getRow($this->userTable)->where(array('username'=>$username))->result();
+// 		$row = $this->db->getRow($this->userTable)->where(array('username'=>$username,'passwd'=>$passwd))->result();
 		// 用户名或密码不对
 		if(!$row){
 			return -1;
