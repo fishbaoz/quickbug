@@ -34,7 +34,7 @@ function selectUserBox(succCallback,isOneSelect,inputOnlyRead){
 			$.get(site_url('user','getUsers','groupid='+gid),function(json){
 				var html = '',list = json.data.userlist;
 				for(var i=0; i<list.length; ++i){ 
-					html += '<option value="'+list[i].userid+'">'+list[i].username+'</option>';
+					html += '<option value="'+list[i].userid+'">'+list[i].username+'('+list[i].truename+')'+'</option>';
 				}
 				$('#select_userid').append(html);
 			},'json');
@@ -47,6 +47,7 @@ function selectUserBox(succCallback,isOneSelect,inputOnlyRead){
 			}
 			
 			var uname = $(this).find('option[selected]').text();
+			uname = uname.substring(0, uname.indexOf("("));
 			// 如果只能选择一个用户
 			if(isOneSelect){
 				$('#select_users').val(uname);
