@@ -121,6 +121,7 @@ return array(
 	'commented_bug'=>'\\1评论了“\\2”这个缺陷:“\\3”',
 	'modifyed_bug'=>'\\1将“\\2”这个缺陷的状态修改为:\\3',
 	'notify_create_bug'=>'\\1 给您分配了一个标题为“\\2”的缺陷，请尽快处理一下！',
+	'notify_create_bug_invite'=>'\\1 创建了一个标题为“\\2”的缺陷，请关注！',
 	'notify_modify_bug'=>'\\1 修改了标题为“\\2”的缺陷，请查看一下！',
 	'notify_reset_touser'=>'\\1 转交了一个标题为“\\2”的缺陷，请尽快处理一下！',
 	'denied_edit_bug'=>'非法编辑缺陷！',

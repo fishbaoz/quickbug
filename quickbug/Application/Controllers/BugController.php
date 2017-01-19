@@ -448,7 +448,7 @@ class bugController extends BaseController
 		if(isset($_POST['notifyMsg']) && $_POST['notifyMsg']){
 			// 操作选择: 0:创建BUG时的处理人通知 2:编辑BUG时的通知处理人
 			$opt = $type==0 ? 0 : 2;
-			$this->profileModel->addInvite($bugid, $this->userid, $_POST['userid'], $opt, 1);
+			$this->profileModel->addInvite($bugid, $this->userid, $_POST['ivtuser'], $opt, 1);
 		}
 		// 如果设置了RTX通知
 		if(isset($_POST['notifyRtx']) && $_POST['notifyRtx']){
@@ -457,6 +457,8 @@ class bugController extends BaseController
 		// 如果设置了邮件通知
 		if(isset($_POST['notifyEmail']) && $_POST['notifyEmail']){
 			User::notify($_POST['userid'],$msg,$url,'email');
+			$invmsg = L('notify_create_bug_invite', array($createUname,$_POST['subject']));
+			User::notify($_POST['ivtuser'],$invmsg,$url,'email');
 		}
 	}
 

@@ -86,7 +86,7 @@ class Model_Profile extends Model_base{
 	 * @param unknown_type $ivtUserType 参数 $ivtUsers 的类型 0:用户名 1:用户ID
 	 */
 	public function addInvite($bugid,$userid,$ivtUsers,$opt,$ivtUserType=0){
-		$nameArr = explode(';',$ivtUsers);
+		$nameArr = explode(',',$ivtUsers);
 		if($ivtUserType == 0){
 			// 用户名要选查询对应的UID
 			$user = new Model_User();

@@ -121,6 +121,7 @@ return array(
 	'commented_bug'=>'\\1 comment \\2\'s:"\\3"',//\\1评论了"\\2"这个Bug:"\\3"
 	'modifyed_bug'=>'\\1 change the \\2\'s status to \\3',//\\1将"\\2"这个Bug的状态修改为:\\3
 	'notify_create_bug'=>'\\1 add a new bug to you , bug title is "\\2", please handle it as soon as possible',//\\1 给您分配了一个标题为"\\2"的Bug.请尽快处理一下
+	'notify_create_bug_invite'=>'\\1 add a new bug, bug title is "\\2", please be noticed',//\\1 创建了一个标题为“\\2”的缺陷，请关注！
 	'notify_modify_bug'=>'The bug which title is "\\2" was modifyed by \\1, please checked.',//\\1 修改了标题为"\\2"的Bug.请查看一下
 	'notify_reset_touser'=>'User \\1 transmit a bug which title is "\\2" to you',//\\1 转交了一个标题为"\\2"的Bug.请尽快处理一下
 	'denied_edit_bug'=>'You do not have permission to edit this bug',// '非法编辑Bug'
